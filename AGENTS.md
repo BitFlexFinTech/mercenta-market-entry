@@ -28,3 +28,11 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+
+- Each homepage concept lives in `src/concepts/ConceptN.tsx`, with a thin route file `src/routes/concept-N.tsx`; this keeps designs easy to lift into another codebase.
+- All copy shared by the concepts lives in `src/content/mercenta.ts` and photos in `src/content/images.ts`; concepts differ in layout only, never in claims.
+- Brand colours are only the `ink`, `paper` and `signal` tokens in `src/styles.css`; the `live` and `tracker-*` tokens exist solely for the Shipment Tracker.
+- `src/components/mercenta/ShipmentTracker.tsx` mirrors the demo.mercenta.co.uk widget exactly; do not restyle it per concept.
+- This project is a visual design showcase: buttons and links are presentational, with no backend, forms or app logic.

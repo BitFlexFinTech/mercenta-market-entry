@@ -10,33 +10,74 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as Concept1RouteImport } from './routes/concept-1'
+import { Route as Concept2RouteImport } from './routes/concept-2'
+import { Route as Concept3RouteImport } from './routes/concept-3'
+import { Route as Concept4RouteImport } from './routes/concept-4'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Concept1Route = Concept1RouteImport.update({
+  id: '/concept-1',
+  path: '/concept-1',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Concept2Route = Concept2RouteImport.update({
+  id: '/concept-2',
+  path: '/concept-2',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Concept3Route = Concept3RouteImport.update({
+  id: '/concept-3',
+  path: '/concept-3',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const Concept4Route = Concept4RouteImport.update({
+  id: '/concept-4',
+  path: '/concept-4',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/concept-1': typeof Concept1Route
+  '/concept-2': typeof Concept2Route
+  '/concept-3': typeof Concept3Route
+  '/concept-4': typeof Concept4Route
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/concept-1': typeof Concept1Route
+  '/concept-2': typeof Concept2Route
+  '/concept-3': typeof Concept3Route
+  '/concept-4': typeof Concept4Route
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/concept-1': typeof Concept1Route
+  '/concept-2': typeof Concept2Route
+  '/concept-3': typeof Concept3Route
+  '/concept-4': typeof Concept4Route
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/concept-1' | '/concept-2' | '/concept-3' | '/concept-4'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/concept-1' | '/concept-2' | '/concept-3' | '/concept-4'
+  id:
+    '__root__' | '/' | '/concept-1' | '/concept-2' | '/concept-3' | '/concept-4'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  Concept1Route: typeof Concept1Route
+  Concept2Route: typeof Concept2Route
+  Concept3Route: typeof Concept3Route
+  Concept4Route: typeof Concept4Route
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +89,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/concept-1': {
+      id: '/concept-1'
+      path: '/concept-1'
+      fullPath: '/concept-1'
+      preLoaderRoute: typeof Concept1RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept-2': {
+      id: '/concept-2'
+      path: '/concept-2'
+      fullPath: '/concept-2'
+      preLoaderRoute: typeof Concept2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept-3': {
+      id: '/concept-3'
+      path: '/concept-3'
+      fullPath: '/concept-3'
+      preLoaderRoute: typeof Concept3RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/concept-4': {
+      id: '/concept-4'
+      path: '/concept-4'
+      fullPath: '/concept-4'
+      preLoaderRoute: typeof Concept4RouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  Concept1Route: Concept1Route,
+  Concept2Route: Concept2Route,
+  Concept3Route: Concept3Route,
+  Concept4Route: Concept4Route,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

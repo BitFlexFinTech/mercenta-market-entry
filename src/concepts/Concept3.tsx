@@ -11,7 +11,7 @@ import {
   Warehouse,
 } from "lucide-react";
 
-import { ConceptSwitcher } from "@/components/mercenta/ConceptSwitcher";
+import { Link } from "@tanstack/react-router";
 import { ShipmentTracker } from "@/components/mercenta/ShipmentTracker";
 import { Wordmark } from "@/components/mercenta/Wordmark";
 import { img } from "@/content/images";
@@ -63,6 +63,12 @@ export function Concept3() {
             ))}
           </nav>
           <div className="flex items-center gap-3">
+            <Link
+              to="/ads-management"
+              className="hidden items-center gap-2 rounded-md border border-paper/15 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:border-signal hover:text-paper md:inline-flex"
+            >
+              Ads Management
+            </Link>
             <a
               href="#contact"
               className="hidden items-center gap-2 rounded-md bg-signal px-4 py-2 text-sm font-semibold text-ink transition-opacity hover:opacity-90 sm:inline-flex"
@@ -531,7 +537,6 @@ export function Concept3() {
         </div>
       </footer>
 
-      <ConceptSwitcher current={3} />
     </div>
   );
 }

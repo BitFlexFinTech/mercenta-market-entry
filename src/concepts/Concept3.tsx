@@ -13,7 +13,7 @@ import {
 
 import { Link } from "@tanstack/react-router";
 import { ShipmentTracker } from "@/components/mercenta/ShipmentTracker";
-import { Wordmark } from "@/components/mercenta/Wordmark";
+import { MMark, Wordmark } from "@/components/mercenta/Wordmark";
 import { img } from "@/content/images";
 import { AUDIENCES, CATEGORIES, INFRASTRUCTURE, NAV, REASONS, STEPS, TAGLINE } from "@/content/mercenta";
 import { cn } from "@/lib/utils";
@@ -34,11 +34,11 @@ function Eyebrow({ index, children, dark }: { index: string; children: string; d
     <p
       className={cn(
         "flex items-center gap-3 font-mono text-xs uppercase tracking-[0.25em]",
-        dark ? "text-paper/50" : "text-ink/50",
+        dark ? "text-paper" : "text-ink",
       )}
     >
       <span className="text-signal">{index}</span>
-      <span className={cn("h-px w-8", dark ? "bg-paper/20" : "bg-ink/20")} />
+      <span className={cn("h-px w-8", dark ? "bg-signal" : "bg-ink")} />
       {children}
     </p>
   );
@@ -48,7 +48,7 @@ export function Concept3() {
   return (
     <div className="bg-ink font-geist text-paper">
       {/* HEADER */}
-      <header className="sticky top-0 z-40 border-b border-paper/10 bg-ink/85 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-signal bg-ink backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <Wordmark tone="paper" />
           <nav className="hidden items-center gap-8 lg:flex">
@@ -56,7 +56,7 @@ export function Concept3() {
               <a
                 key={n.href}
                 href={n.href}
-                className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper/60 transition-colors hover:text-paper"
+                className="font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:text-paper"
               >
                 {n.label}
               </a>
@@ -65,7 +65,7 @@ export function Concept3() {
           <div className="flex items-center gap-3">
             <Link
               to="/ads-management"
-              className="hidden items-center gap-2 rounded-md border border-paper/15 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:border-signal hover:text-paper md:inline-flex"
+              className="hidden items-center gap-2 rounded-md border border-signal px-4 py-2 font-mono text-[11px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-signal hover:text-paper md:inline-flex"
             >
               Ads Management
             </Link>
@@ -75,7 +75,7 @@ export function Concept3() {
             >
               Start UK entry <ArrowRight className="h-4 w-4" />
             </a>
-            <span className="flex h-9 w-9 items-center justify-center rounded-md border border-paper/15 lg:hidden">
+            <span className="flex h-9 w-9 items-center justify-center rounded-md border border-signal lg:hidden">
               <Menu className="h-4 w-4" />
             </span>
           </div>
@@ -83,19 +83,19 @@ export function Concept3() {
       </header>
 
       {/* HERO — 12-col grid; copy left (7), Shipment Tracker top-right (5) */}
-      <section className="relative overflow-hidden grid-lines">
-        <div className="pointer-events-none absolute -right-40 -top-40 h-[520px] w-[520px] rounded-full bg-signal/10 blur-3xl" />
+      <section className="relative overflow-hidden">
+        <span className="pointer-events-none absolute inset-y-0 left-0 w-1.5 bg-signal" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-14 md:pt-20 lg:grid lg:grid-cols-12 lg:items-center lg:gap-8 lg:pb-28">
           <div className="lg:col-span-7">
-            <span className="inline-flex items-center gap-2 rounded-full border border-paper/15 bg-paper/[0.03] px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/80">
+            <span className="inline-flex items-center gap-2 rounded-full border border-signal bg-ink px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-paper">
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
               {TAGLINE}
             </span>
-            <h1 className="mt-7 text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[4.4rem]">
+            <h1 className="mt-7 font-brand text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.035em] sm:text-6xl lg:text-[4.4rem]">
               Enter the UK market on infrastructure that’s{" "}
               <span className="text-signal">already running.</span>
             </h1>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-paper/65 md:text-lg">
+            <p className="mt-6 max-w-xl text-base leading-relaxed text-paper md:text-lg">
               Mercenta is the UK wholesale distribution and market-entry platform for international
               brands — connecting freight, customs, storage and retail-channel operations into one
               coordinated route, with live visibility from origin to shelf.
@@ -109,12 +109,12 @@ export function Concept3() {
               </a>
               <a
                 href="#how-it-works"
-                className="inline-flex items-center gap-2 rounded-md border border-paper/20 px-6 py-3.5 font-medium text-paper transition-colors hover:border-paper/50"
+                className="inline-flex items-center gap-2 rounded-md border border-signal px-6 py-3.5 font-medium text-paper transition-colors hover:border-signal"
               >
                 See how it works
               </a>
             </div>
-            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-paper/10 bg-paper/10 sm:grid-cols-4">
+            <dl className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-signal bg-signal sm:grid-cols-4">
               {[
                 { k: "Wholesale", v: "distribution", i: Boxes },
                 { k: "Freight &", v: "customs", i: Plane },
@@ -124,10 +124,10 @@ export function Concept3() {
                 <div key={k} className="bg-ink p-4">
                   <div className="flex items-center justify-between">
                     <Icon className="h-4 w-4 text-signal" />
-                    <span className="font-mono text-[10px] text-paper/35">0{idx + 1}</span>
+                    <span className="font-mono text-[10px] text-paper">0{idx + 1}</span>
                   </div>
                   <dt className="mt-4 text-sm font-medium leading-tight">{k}</dt>
-                  <dd className="text-sm leading-tight text-paper/55">{v}</dd>
+                  <dd className="text-sm leading-tight text-paper">{v}</dd>
                 </div>
               ))}
             </dl>
@@ -139,8 +139,30 @@ export function Concept3() {
         </div>
       </section>
 
+      {/* TAGLINE BAND — full-bleed orange ticker */}
+      <div className="overflow-hidden border-y-2 border-ink bg-signal text-ink" aria-hidden="true">
+        <div className="flex w-max animate-marquee">
+          {[0, 1].map((k) => (
+            <div key={k} className="flex shrink-0 items-center">
+              {[0, 1, 2].flatMap((r) =>
+                TAGLINE.replace(/\.$/, "")
+                  .split(". ")
+                  .map((w) => (
+                    <span key={`${r}-${w}`} className="flex items-center gap-6 px-6 py-5">
+                      <span className="whitespace-nowrap font-brand text-2xl font-extrabold uppercase tracking-[0.08em] font-expanded md:text-4xl">
+                        {w}
+                      </span>
+                      <MMark tile="ink" className="h-7 w-7 md:h-9 md:w-9" />
+                    </span>
+                  )),
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* PHYSICAL LAYER — annotated photo */}
-      <section className="border-y border-paper/10">
+      <section className="border-y border-signal">
         <div className="relative">
           <img
             src={img.warehouseAisle}
@@ -160,16 +182,16 @@ export function Concept3() {
                   <span className="absolute inline-flex h-full w-full animate-tracker-ping rounded-full bg-signal opacity-60" />
                   <span className="relative inline-flex h-4 w-4 rounded-full border-2 border-paper bg-signal" />
                 </span>
-                <span className="rounded-md border border-paper/15 bg-ink/80 px-3 py-2 backdrop-blur">
+                <span className="rounded-md border border-signal bg-ink px-3 py-2 backdrop-blur">
                   <span className="block font-mono text-[11px] uppercase tracking-[0.2em] text-signal">
                     {a.t}
                   </span>
-                  <span className="block font-mono text-[11px] text-paper/70">{a.s}</span>
+                  <span className="block font-mono text-[11px] text-paper">{a.s}</span>
                 </span>
               </div>
             ))}
             <div className="absolute bottom-8 left-6 right-6 max-w-lg md:bottom-12">
-              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-paper/60">
+              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-paper">
                 The physical layer
               </p>
               <p className="mt-3 text-2xl font-semibold leading-tight tracking-tight md:text-4xl">
@@ -181,24 +203,24 @@ export function Concept3() {
       </section>
 
       {/* INFRASTRUCTURE — light treatment with route diagram */}
-      <section id="infrastructure" className="bg-paper text-ink grid-lines-ink">
+      <section id="infrastructure" className="bg-paper text-ink">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-6">
               <Eyebrow index="02">Distribution infrastructure</Eyebrow>
-              <h2 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
+              <h2 className="mt-5 font-brand text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
                 One connected route from origin to UK shelf.
               </h2>
             </div>
-            <p className="self-end text-lg leading-relaxed text-ink/65 lg:col-span-5 lg:col-start-8">
+            <p className="self-end text-lg leading-relaxed text-ink lg:col-span-5 lg:col-start-8">
               Mercenta provides access to coordinated UK market-entry infrastructure. Each layer is
               connected to the next, so stock, data and orders move as one system.
             </p>
           </div>
 
           {/* Flow diagram */}
-          <div className="mt-14 rounded-md border border-ink/10 bg-paper p-5 md:p-8">
-            <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-ink/45">
+          <div className="mt-14 rounded-md border border-ink bg-paper p-5 md:p-8">
+            <div className="mb-6 flex items-center justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-ink">
               <span>Route map</span>
               <span className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-signal" /> Coordinated by Mercenta
@@ -211,15 +233,15 @@ export function Concept3() {
                     className={cn(
                       "flex items-center gap-4 rounded-md border p-4 lg:w-full lg:flex-col lg:items-start lg:gap-3",
                       i === 3 || i === 4
-                        ? "border-signal bg-signal/[0.06]"
-                        : "border-ink/12 bg-paper",
+                        ? "border-signal bg-signal"
+                        : "border-ink bg-paper",
                       i === FLOW.length - 1 && "border-ink bg-ink text-paper",
                     )}
                   >
                     <span
                       className={cn(
                         "font-mono text-[10px]",
-                        i === FLOW.length - 1 ? "text-signal" : "text-ink/40",
+                        i === FLOW.length - 1 ? "text-signal" : "text-ink",
                       )}
                     >
                       N{String(i + 1).padStart(2, "0")}
@@ -229,7 +251,7 @@ export function Concept3() {
                       <span
                         className={cn(
                           "block font-mono text-[11px]",
-                          i === FLOW.length - 1 ? "text-paper/55" : "text-ink/50",
+                          i === FLOW.length - 1 ? "text-paper" : "text-ink",
                         )}
                       >
                         {f.sub}
@@ -268,7 +290,7 @@ export function Concept3() {
           </div>
 
           {/* Modules */}
-          <div className="mt-6 grid gap-px overflow-hidden rounded-md border border-ink/10 bg-ink/10 md:grid-cols-2 lg:grid-cols-5">
+          <div className="mt-6 grid gap-px overflow-hidden rounded-md border border-ink bg-ink md:grid-cols-2 lg:grid-cols-5">
             {INFRASTRUCTURE.map((m, i) => {
               const Icon = MODULE_ICONS[i] ?? Boxes;
               return (
@@ -277,11 +299,11 @@ export function Concept3() {
                     <span className="flex h-10 w-10 items-center justify-center rounded-md bg-ink text-signal">
                       <Icon className="h-5 w-5" />
                     </span>
-                    <span className="font-mono text-[10px] text-ink/40">MOD-0{i + 1}</span>
+                    <span className="font-mono text-[10px] text-ink">MOD-0{i + 1}</span>
                   </div>
                   <h3 className="mt-6 text-lg font-semibold leading-snug tracking-tight">{m.title}</h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/60">{m.body}</p>
-                  <p className="mt-6 flex items-center gap-2 border-t border-ink/10 pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink/50">
+                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink">{m.body}</p>
+                  <p className="mt-6 flex items-center gap-2 border-t border-ink pt-4 font-mono text-[10px] uppercase tracking-[0.2em] text-ink">
                     <span className="h-1.5 w-1.5 rounded-full bg-signal" /> Included
                   </p>
                 </article>
@@ -292,32 +314,32 @@ export function Concept3() {
       </section>
 
       {/* HOW IT WORKS — dark stepper */}
-      <section id="how-it-works" className="border-b border-paper/10">
+      <section id="how-it-works" className="border-b border-signal">
         <div className="mx-auto grid max-w-7xl gap-14 px-6 py-20 md:py-28 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-28">
               <Eyebrow index="03" dark>
                 How it works
               </Eyebrow>
-              <h2 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
+              <h2 className="mt-5 font-brand text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
                 Five stages from first conversation to growing UK sales.
               </h2>
-              <div className="relative mt-10 overflow-hidden rounded-md border border-paper/10">
+              <div className="relative mt-10 overflow-hidden rounded-md border border-signal">
                 <img
                   src={img.airFreight}
                   alt="Air freight pallets being loaded into a cargo aircraft at dusk"
                   className="aspect-[4/3] w-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute left-4 top-4 flex items-center gap-2 rounded-md border border-paper/15 bg-ink/80 px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] backdrop-blur">
+                <div className="absolute left-4 top-4 flex items-center gap-2 rounded-md border border-signal bg-ink px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] backdrop-blur">
                   <Plane className="h-3.5 w-3.5 text-signal" /> Stage 03 · Ship
                 </div>
-                <div className="absolute bottom-4 left-4 right-4 rounded-md border border-paper/15 bg-ink/80 p-3 backdrop-blur">
-                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-paper/55">
+                <div className="absolute bottom-4 left-4 right-4 rounded-md border border-signal bg-ink p-3 backdrop-blur">
+                  <div className="flex justify-between font-mono text-[10px] uppercase tracking-[0.2em] text-paper">
                     <span>Origin</span>
                     <span className="text-signal">UK</span>
                   </div>
-                  <div className="relative mt-2 h-1 rounded-full bg-paper/10">
+                  <div className="relative mt-2 h-1 rounded-full bg-paper">
                     <div className="absolute inset-y-0 left-0 w-3/5 rounded-full bg-signal" />
                   </div>
                 </div>
@@ -326,7 +348,7 @@ export function Concept3() {
           </div>
 
           <ol className="relative lg:col-span-7">
-            <span className="absolute bottom-6 left-[23px] top-6 w-px bg-paper/10" aria-hidden="true" />
+            <span className="absolute bottom-6 left-[23px] top-6 w-px bg-signal" aria-hidden="true" />
             <span
               className="absolute left-[23px] top-6 h-[42%] w-px bg-signal"
               aria-hidden="true"
@@ -340,12 +362,12 @@ export function Concept3() {
                       ? "border-signal bg-signal text-ink"
                       : i === 2
                         ? "border-signal bg-ink text-signal"
-                        : "border-paper/15 bg-ink text-paper/50",
+                        : "border-signal bg-ink text-paper",
                   )}
                 >
                   {s.n}
                 </span>
-                <div className="flex-1 rounded-md border border-paper/10 bg-paper/[0.02] p-6">
+                <div className="flex-1 rounded-md border border-signal bg-ink p-6">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <h3 className="text-2xl font-semibold tracking-tight">{s.title}</h3>
                     <span
@@ -353,13 +375,13 @@ export function Concept3() {
                         "rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em]",
                         i === 2
                           ? "bg-signal text-ink"
-                          : "border border-paper/12 text-paper/50",
+                          : "border border-signal text-paper",
                       )}
                     >
                       Stage {i + 1} of 5
                     </span>
                   </div>
-                  <p className="mt-3 max-w-lg leading-relaxed text-paper/60">{s.body}</p>
+                  <p className="mt-3 max-w-lg leading-relaxed text-paper">{s.body}</p>
                 </div>
               </li>
             ))}
@@ -371,7 +393,7 @@ export function Concept3() {
       <section id="why-mercenta" className="bg-paper text-ink">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
           <Eyebrow index="04">Why Mercenta</Eyebrow>
-          <h2 className="mt-5 max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
+          <h2 className="mt-5 font-brand max-w-3xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
             Built for brands that want to be in the UK for the long term.
           </h2>
           <div className="mt-14 grid gap-4 md:grid-cols-6 lg:grid-rows-[auto_auto_auto]">
@@ -382,7 +404,7 @@ export function Concept3() {
                 className="h-full min-h-[320px] w-full object-cover"
                 loading="lazy"
               />
-              <figcaption className="absolute bottom-4 left-4 flex items-center gap-2 rounded-md bg-ink/85 px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper">
+              <figcaption className="absolute bottom-4 left-4 flex items-center gap-2 rounded-md bg-ink px-3 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-paper">
                 <ScanLine className="h-3.5 w-3.5 text-signal" /> Every carton accounted for
               </figcaption>
             </figure>
@@ -395,14 +417,14 @@ export function Concept3() {
                     ? "border-signal bg-signal text-ink lg:col-span-3"
                     : i === 4
                       ? "border-ink bg-ink text-paper lg:col-span-3"
-                      : "border-ink/10 lg:col-span-1",
+                      : "border-ink lg:col-span-1",
                   i < 3 && "lg:col-span-1",
                 )}
               >
                 <span
                   className={cn(
                     "font-mono text-[11px]",
-                    i === 3 ? "text-ink/60" : i === 4 ? "text-signal" : "text-signal",
+                    i === 3 ? "text-ink" : i === 4 ? "text-signal" : "text-signal",
                   )}
                 >
                   0{i + 1}
@@ -412,7 +434,7 @@ export function Concept3() {
                   <p
                     className={cn(
                       "mt-2 text-sm leading-relaxed",
-                      i === 3 ? "text-ink/75" : i === 4 ? "text-paper/60" : "text-ink/60",
+                      i === 3 ? "text-ink" : i === 4 ? "text-paper" : "text-ink",
                     )}
                   >
                     {r.body}
@@ -425,14 +447,14 @@ export function Concept3() {
       </section>
 
       {/* WHO WE WORK WITH */}
-      <section id="who-we-work-with" className="border-b border-paper/10">
+      <section id="who-we-work-with" className="border-b border-signal">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-5">
               <Eyebrow index="05" dark>
                 Who we work with
               </Eyebrow>
-              <h2 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
+              <h2 className="mt-5 font-brand text-4xl font-semibold leading-[1.05] tracking-[-0.03em] md:text-5xl">
                 International brands across ten UK categories.
               </h2>
             </div>
@@ -440,7 +462,7 @@ export function Concept3() {
               {AUDIENCES.map((a) => (
                 <li
                   key={a}
-                  className="flex items-center justify-between border-b border-paper/10 pb-3 text-paper/75"
+                  className="flex items-center justify-between border-b border-signal pb-3 text-paper"
                 >
                   {a}
                   <ArrowUpRight className="h-4 w-4 text-signal" />
@@ -448,7 +470,7 @@ export function Concept3() {
               ))}
             </ul>
           </div>
-          <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-paper/10 bg-paper/10 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-md border border-signal bg-signal sm:grid-cols-3 lg:grid-cols-5">
             {CATEGORIES.map((c, i) => (
               <div
                 key={c.name}
@@ -456,7 +478,7 @@ export function Concept3() {
               >
                 <div className="flex items-center justify-between">
                   <c.icon className="h-5 w-5 text-signal group-hover:text-ink" />
-                  <span className="font-mono text-[10px] text-paper/35 group-hover:text-ink/60">
+                  <span className="font-mono text-[10px] text-paper group-hover:text-ink">
                     CAT-{String(i + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -470,32 +492,32 @@ export function Concept3() {
       {/* CTA */}
       <section id="contact" className="relative overflow-hidden bg-signal text-ink">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink/60">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-ink">
             Commercial partnerships
           </p>
-          <h2 className="mt-5 max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] md:text-6xl lg:text-7xl">
+          <h2 className="mt-5 font-brand max-w-4xl text-4xl font-semibold leading-[1.02] tracking-[-0.035em] md:text-6xl lg:text-7xl">
             Your route into the UK starts with one conversation.
           </h2>
           <div className="relative mt-12 h-10 max-w-3xl" aria-hidden="true">
-            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 border-t-2 border-dotted border-ink/40" />
+            <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 border-t-2 border-dotted border-ink" />
             <span className="absolute top-1/2 flex -translate-y-1/2 animate-route-dot items-center justify-center">
               <span className="h-3.5 w-3.5 rounded-full bg-ink" />
             </span>
             <span className="absolute left-0 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-ink bg-signal" />
             <span className="absolute right-0 top-1/2 h-3 w-3 -translate-y-1/2 rounded-full bg-ink" />
           </div>
-          <div className="mt-2 flex max-w-3xl justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-ink/70">
+          <div className="mt-2 flex max-w-3xl justify-between font-mono text-[11px] uppercase tracking-[0.2em] text-ink">
             <span>Your brand</span>
             <span>UK shelf</span>
           </div>
           <div className="mt-12 flex flex-wrap items-center gap-4">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-md bg-ink px-7 py-4 font-semibold text-paper transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-md bg-ink px-7 py-4 font-semibold text-paper transition-colors hover:bg-paper hover:text-ink"
             >
               Start a partnership conversation <ArrowRight className="h-4 w-4" />
             </a>
-            <span className="font-mono text-sm text-ink/70">
+            <span className="font-mono text-sm text-ink">
               For brands, commercial partners and investors.
             </span>
           </div>
@@ -508,8 +530,8 @@ export function Concept3() {
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
               <Wordmark tone="paper" />
-              <p className="mt-6 max-w-sm text-paper/55">{TAGLINE}</p>
-              <p className="mt-2 max-w-sm text-sm text-paper/40">
+              <p className="mt-6 max-w-sm text-paper">{TAGLINE}</p>
+              <p className="mt-2 max-w-sm text-sm text-paper">
                 UK wholesale distribution and market-entry platform for international brands.
               </p>
             </div>
@@ -519,8 +541,8 @@ export function Concept3() {
               { h: "Legal", l: ["Privacy", "Terms", "Cookies"] },
             ].map((col) => (
               <div key={col.h} className="md:col-span-2">
-                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/40">{col.h}</p>
-                <ul className="mt-4 space-y-2.5 text-sm text-paper/70">
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper">{col.h}</p>
+                <ul className="mt-4 space-y-2.5 text-sm text-paper">
                   {col.l.map((x) => (
                     <li key={x}>{x}</li>
                   ))}
@@ -528,7 +550,7 @@ export function Concept3() {
               </div>
             ))}
           </div>
-          <div className="mt-14 flex flex-col justify-between gap-3 border-t border-paper/10 pt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-paper/40 sm:flex-row">
+          <div className="mt-14 flex flex-col justify-between gap-3 border-t border-signal pt-6 font-mono text-[11px] uppercase tracking-[0.18em] text-paper sm:flex-row">
             <span>© 2026 Mercenta Partners Ltd</span>
             <span className="flex items-center gap-2">
               <Truck className="h-3.5 w-3.5 text-signal" /> United Kingdom

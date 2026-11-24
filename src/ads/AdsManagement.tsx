@@ -12,7 +12,7 @@ import { ASINS, BRANDS, CAMPAIGNS, FORMATS, KPIS, LIBRARY, SERIES, type Format }
 
 type Tab = "performance" | "studio" | "library";
 
-const card = "rounded-xl border border-paper/[0.08] bg-tracker-surface";
+const card = "rounded-xl border border-signal bg-tracker-surface";
 const mono = "font-mono text-[11px] uppercase tracking-[0.2em] text-tracker-muted";
 const gbp = (n: number) => `£${n.toLocaleString("en-GB")}`;
 
@@ -36,7 +36,7 @@ export function AdsManagement() {
 
   return (
     <div className="min-h-screen bg-ink font-geist text-paper">
-      <header className="sticky top-0 z-40 border-b border-paper/10 bg-ink/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-signal bg-ink backdrop-blur">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-6">
           <div className="flex items-center gap-4">
             <Link to="/"><Wordmark tone="paper" /></Link>
@@ -47,13 +47,13 @@ export function AdsManagement() {
               <select
                 value={brand}
                 onChange={(e) => setBrand(e.target.value)}
-                className="appearance-none rounded-md border border-paper/15 bg-tracker-surface py-2 pl-3 pr-8 text-sm text-paper"
+                className="appearance-none rounded-md border border-signal bg-tracker-surface py-2 pl-3 pr-8 text-sm text-paper"
               >
                 {BRANDS.map((b) => <option key={b}>{b}</option>)}
               </select>
               <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-4 w-4 -translate-y-1/2 text-tracker-muted" />
             </label>
-            <span className="hidden items-center gap-2 rounded-md border border-paper/10 px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-tracker-muted md:flex">
+            <span className="hidden items-center gap-2 rounded-md border border-signal px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-tracker-muted md:flex">
               <Beacon /> Live sync · example data
             </span>
           </div>
@@ -65,7 +65,7 @@ export function AdsManagement() {
               onClick={() => setTab(t.id)}
               className={cn(
                 "flex shrink-0 items-center gap-2 border-b-2 px-4 py-3 text-sm transition-colors",
-                tab === t.id ? "border-signal text-paper" : "border-transparent text-paper/50 hover:text-paper",
+                tab === t.id ? "border-signal text-paper" : "border-transparent text-paper hover:text-paper",
               )}
             >
               <t.icon className="h-4 w-4" /> {t.label}
@@ -102,7 +102,7 @@ function Performance({ onCreate }: { onCreate: () => void }) {
         <div className="flex gap-2">
           {[7, 14, 30].map((r) => (
             <button key={r} onClick={() => setRange(r)}
-              className={cn("rounded-md border px-3 py-1.5 font-mono text-xs", range === r ? "border-signal bg-signal text-ink" : "border-paper/15 text-paper/70")}>
+              className={cn("rounded-md border px-3 py-1.5 font-mono text-xs", range === r ? "border-signal bg-signal text-ink" : "border-signal text-paper")}>
               {r}D
             </button>
           ))}
@@ -114,7 +114,7 @@ function Performance({ onCreate }: { onCreate: () => void }) {
           <div key={k.label} className={cn(card, "p-4")}>
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-tracker-faint">{k.label}</p>
             <p className="mt-2 text-xl font-semibold tabular-nums">{k.value}</p>
-            <p className={cn("mt-1 flex items-center gap-1 font-mono text-[11px]", k.up ? "text-live" : "text-signal")}>
+            <p className={cn("mt-1 flex items-center gap-1 font-mono text-[11px]", k.up ? "text-paper" : "text-signal")}>
               {k.up ? <ArrowUpRight className="h-3 w-3" /> : <ArrowDownRight className="h-3 w-3" />}{k.delta}
             </p>
           </div>
@@ -127,13 +127,13 @@ function Performance({ onCreate }: { onCreate: () => void }) {
             <p className={mono}>Spend vs attributed sales</p>
             <div className="flex gap-4 font-mono text-[11px] text-tracker-muted">
               <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-signal" />Sales</span>
-              <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-paper/60" />Spend</span>
+              <span className="flex items-center gap-1.5"><i className="h-2 w-2 rounded-full bg-paper" />Spend</span>
             </div>
           </div>
           <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="mt-6 h-56 w-full">
-            {[25, 50, 75].map((y) => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="currentColor" className="text-paper/[0.06]" strokeWidth="0.3" />)}
+            {[25, 50, 75].map((y) => <line key={y} x1="0" x2="100" y1={y} y2={y} stroke="var(--signal)" vectorEffect="non-scaling-stroke" style={{ strokeWidth: 1 }} strokeDasharray="2 4" />)}
             <polyline points={pts("sales")} fill="none" stroke="var(--signal)" strokeWidth="0.8" vectorEffect="non-scaling-stroke" style={{ strokeWidth: 2 }} />
-            <polyline points={pts("spend")} fill="none" stroke="currentColor" className="text-paper/60" vectorEffect="non-scaling-stroke" style={{ strokeWidth: 1.5 }} strokeDasharray="4 3" />
+            <polyline points={pts("spend")} fill="none" stroke="currentColor" className="text-paper" vectorEffect="non-scaling-stroke" style={{ strokeWidth: 1.5 }} strokeDasharray="4 3" />
           </svg>
           <div className="mt-2 flex justify-between font-mono text-[10px] text-tracker-faint">
             <span>Day {data[0]?.day}</span><span>Today</span>
@@ -145,12 +145,12 @@ function Performance({ onCreate }: { onCreate: () => void }) {
           <button onClick={onCreate} className="flex items-center justify-between rounded-md bg-signal px-4 py-3 text-sm font-semibold text-ink">
             Create new ad <Plus className="h-4 w-4" />
           </button>
-          <button className="flex items-center justify-between rounded-md border border-paper/15 px-4 py-3 text-sm">New campaign <Plus className="h-4 w-4" /></button>
-          <button className="flex items-center justify-between rounded-md border border-paper/15 px-4 py-3 text-sm">Export report <Download className="h-4 w-4" /></button>
-          <div className="mt-auto rounded-lg border border-paper/[0.06] bg-tracker-well p-4">
+          <button className="flex items-center justify-between rounded-md border border-signal px-4 py-3 text-sm">New campaign <Plus className="h-4 w-4" /></button>
+          <button className="flex items-center justify-between rounded-md border border-signal px-4 py-3 text-sm">Export report <Download className="h-4 w-4" /></button>
+          <div className="mt-auto rounded-lg border border-signal bg-tracker-well p-4">
             <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-tracker-faint">Monthly budget pacing</p>
             <p className="mt-2 text-lg font-semibold">£24,850 <span className="text-sm text-tracker-muted">/ £32,000</span></p>
-            <div className="mt-3 h-1.5 rounded-full bg-paper/10"><div className="h-full w-[78%] rounded-full bg-signal" /></div>
+            <div className="mt-3 h-1.5 rounded-full bg-paper"><div className="h-full w-[78%] rounded-full bg-signal" /></div>
           </div>
         </div>
       </div>
@@ -159,30 +159,30 @@ function Performance({ onCreate }: { onCreate: () => void }) {
         <div className="flex items-center justify-between p-5"><p className={mono}>Campaigns</p></div>
         <div className="overflow-x-auto">
           <table className="w-full min-w-[760px] text-sm">
-            <thead className="border-y border-paper/[0.06] font-mono text-[10px] uppercase tracking-[0.2em] text-tracker-faint">
+            <thead className="border-y border-signal font-mono text-[10px] uppercase tracking-[0.2em] text-tracker-faint">
               <tr>{["Status", "Campaign", "Type", "Budget/day", "Spend", "Sales", "ACoS", "Pacing"].map((h) => <th key={h} className="px-5 py-3 text-left font-normal">{h}</th>)}</tr>
             </thead>
-            <tbody className="divide-y divide-paper/[0.06]">
+            <tbody className="divide-y divide-signal">
               {campaigns.map((c) => {
                 const on = c.status === "Active";
                 return (
-                  <tr key={c.id} className="hover:bg-paper/[0.02]">
+                  <tr key={c.id} className="hover:bg-ink">
                     <td className="px-5 py-3">
                       <button
                         aria-label={on ? "Pause campaign" : "Resume campaign"}
                         onClick={() => setCampaigns((all) => all.map((x) => x.id === c.id ? { ...x, status: on ? "Paused" : "Active" } : x))}
-                        className={cn("relative h-5 w-9 rounded-full transition-colors", on ? "bg-live" : "bg-paper/15")}
+                        className={cn("relative h-5 w-9 rounded-full transition-colors", on ? "bg-signal" : "bg-paper")}
                       >
-                        <span className={cn("absolute top-0.5 h-4 w-4 rounded-full bg-paper transition-all", on ? "left-[18px]" : "left-0.5")} />
+                        <span className={cn("absolute top-0.5 h-4 w-4 rounded-full bg-ink transition-all", on ? "left-[18px]" : "left-0.5")} />
                       </button>
                     </td>
                     <td className="px-5 py-3"><p className="font-medium">{c.name}</p><p className="font-mono text-[10px] text-tracker-faint">{c.id}</p></td>
-                    <td className="px-5 py-3"><span className="rounded-full border border-paper/[0.12] bg-paper/[0.06] px-2 py-0.5 font-mono text-[10px] text-tracker-text">{c.type}</span></td>
+                    <td className="px-5 py-3"><span className="rounded-full border border-signal bg-ink px-2 py-0.5 font-mono text-[10px] text-tracker-text">{c.type}</span></td>
                     <td className="px-5 py-3 tabular-nums">{gbp(c.budget)}</td>
                     <td className="px-5 py-3 tabular-nums">{gbp(c.spend)}</td>
                     <td className="px-5 py-3 tabular-nums">{gbp(c.sales)}</td>
                     <td className="px-5 py-3 tabular-nums">{((c.spend / c.sales) * 100).toFixed(1)}%</td>
-                    <td className="px-5 py-3"><div className="h-1.5 w-20 rounded-full bg-paper/10"><div className="h-full rounded-full bg-signal" style={{ width: `${on ? c.pacing : 0}%` }} /></div></td>
+                    <td className="px-5 py-3"><div className="h-1.5 w-20 rounded-full bg-paper"><div className="h-full rounded-full bg-signal" style={{ width: `${on ? c.pacing : 0}%` }} /></div></td>
                   </tr>
                 );
               })}
@@ -195,7 +195,7 @@ function Performance({ onCreate }: { onCreate: () => void }) {
         <p className={mono}>Top advertised products</p>
         <div className="mt-4 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
           {ASINS.map((a) => (
-            <div key={a.asin} className="rounded-lg border border-paper/[0.06] bg-tracker-well p-4">
+            <div key={a.asin} className="rounded-lg border border-signal bg-tracker-well p-4">
               <p className="font-mono text-[10px] text-tracker-faint">{a.asin}</p>
               <p className="mt-1 text-sm font-medium">{a.title}</p>
               <div className="mt-3 flex justify-between font-mono text-xs">
@@ -253,12 +253,12 @@ function Studio({ brand }: { brand: string }) {
         <p className={cn(mono, "px-2")}>01 · Format</p>
         {groups.map((g) => (
           <div key={g} className="mt-4">
-            <p className="px-2 text-xs font-semibold text-paper/80">{g}</p>
+            <p className="px-2 text-xs font-semibold text-paper">{g}</p>
             <div className="mt-1 space-y-0.5">
               {FORMATS.filter((f) => f.group === g).map((f) => (
                 <button key={f.id} onClick={() => { setFmt(f); setGenerated(false); }}
                   className={cn("flex w-full items-center justify-between rounded-md px-2 py-2 text-left text-sm",
-                    fmt.id === f.id ? "bg-signal/15 text-paper ring-1 ring-signal/60" : "text-paper/60 hover:bg-paper/[0.04]")}>
+                    fmt.id === f.id ? "bg-signal text-ink ring-1 ring-signal" : "text-paper hover:text-signal")}>
                   <span className="flex items-center gap-2">
                     {f.media === "Video" ? <Film className="h-3.5 w-3.5" /> : <ImageIcon className="h-3.5 w-3.5" />}{f.name}
                   </span>
@@ -276,7 +276,7 @@ function Studio({ brand }: { brand: string }) {
         <div>
           <p className="text-xs text-tracker-muted">Product (ASIN)</p>
           <select value={asin} onChange={(e) => setAsin(e.target.value)}
-            className="mt-1.5 w-full rounded-md border border-paper/15 bg-tracker-well px-3 py-2 text-sm">
+            className="mt-1.5 w-full rounded-md border border-signal bg-tracker-well px-3 py-2 text-sm">
             {ASINS.map((a) => <option key={a.asin} value={a.asin}>{a.asin} · {a.title}</option>)}
           </select>
         </div>
@@ -287,12 +287,12 @@ function Studio({ brand }: { brand: string }) {
               <span className={cn("font-mono", tooLong ? "text-signal" : "")}>{headline.length}/{fmt.headline}</span>
             </div>
             <textarea value={headline} onChange={(e) => setHeadline(e.target.value)} rows={2}
-              className="mt-1.5 w-full resize-none rounded-md border border-paper/15 bg-tracker-well px-3 py-2 text-sm" />
+              className="mt-1.5 w-full resize-none rounded-md border border-signal bg-tracker-well px-3 py-2 text-sm" />
           </div>
         )}
         <div>
           <p className="text-xs text-tracker-muted">{fmt.media === "Video" ? "Video" : "Image"} · {fmt.spec}</p>
-          <label className="mt-1.5 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-paper/20 bg-tracker-well px-4 py-6 text-center text-sm text-paper/70 hover:border-signal">
+          <label className="mt-1.5 flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-signal bg-tracker-well px-4 py-6 text-center text-sm text-paper hover:border-signal">
             <Upload className="h-5 w-5 text-signal" />
             {uploaded ? "Replace media" : `Drop ${fmt.media.toLowerCase()} or click to upload`}
             <input type="file" accept={fmt.media === "Video" ? "video/*" : "image/*"} className="hidden"
@@ -304,8 +304,8 @@ function Studio({ brand }: { brand: string }) {
           <div className="mt-1.5 grid grid-cols-3 gap-2">
             {STYLES.map((s) => (
               <button key={s.id} onClick={() => setStyle(s)}
-                className={cn("rounded-md border px-2 py-2 text-xs", style.id === s.id ? "border-signal text-paper" : "border-paper/15 text-paper/60")}>
-                <span className={cn("mb-1.5 block h-4 rounded-sm border border-paper/20", s.bg)} />{s.label}
+                className={cn("rounded-md border px-2 py-2 text-xs", style.id === s.id ? "border-signal text-paper" : "border-signal text-paper")}>
+                <span className={cn("mb-1.5 block h-4 rounded-sm border border-signal", s.bg)} />{s.label}
               </button>
             ))}
           </div>
@@ -317,7 +317,7 @@ function Studio({ brand }: { brand: string }) {
         {generated && (
           <div className="grid grid-cols-3 gap-2">
             {STYLES.map((s) => (
-              <button key={s.id} onClick={() => setStyle(s)} className={cn("aspect-square overflow-hidden rounded-md border", style.id === s.id ? "border-signal" : "border-paper/10")}>
+              <button key={s.id} onClick={() => setStyle(s)} className={cn("aspect-square overflow-hidden rounded-md border", style.id === s.id ? "border-signal" : "border-signal")}>
                 <div className={cn("flex h-full flex-col justify-end p-1.5 text-left text-[9px] font-semibold leading-tight", s.bg, s.fg)}>{headline.slice(0, 28)}</div>
               </button>
             ))}
@@ -330,9 +330,9 @@ function Studio({ brand }: { brand: string }) {
         <div className="flex items-center justify-between">
           <p className={mono}>03 · Preview</p>
           <div className="flex gap-1">
-            <button aria-label="Desktop" onClick={() => setDevice("desktop")} className={cn("rounded p-1.5", device === "desktop" ? "bg-paper/10" : "text-paper/50")}><Monitor className="h-4 w-4" /></button>
-            <button aria-label="Mobile" onClick={() => setDevice("mobile")} className={cn("rounded p-1.5", device === "mobile" ? "bg-paper/10" : "text-paper/50")}><Smartphone className="h-4 w-4" /></button>
-            <button aria-label="Safe zones" onClick={() => setSafe(!safe)} className={cn("rounded p-1.5", safe ? "bg-signal/20 text-signal" : "text-paper/50")}><Grid3x3 className="h-4 w-4" /></button>
+            <button aria-label="Desktop" onClick={() => setDevice("desktop")} className={cn("rounded p-1.5", device === "desktop" ? "bg-signal text-ink" : "text-paper")}><Monitor className="h-4 w-4" /></button>
+            <button aria-label="Mobile" onClick={() => setDevice("mobile")} className={cn("rounded p-1.5", device === "mobile" ? "bg-signal text-ink" : "text-paper")}><Smartphone className="h-4 w-4" /></button>
+            <button aria-label="Safe zones" onClick={() => setSafe(!safe)} className={cn("rounded p-1.5", safe ? "bg-signal text-ink" : "text-paper")}><Grid3x3 className="h-4 w-4" /></button>
           </div>
         </div>
 
@@ -350,16 +350,16 @@ function Studio({ brand }: { brand: string }) {
                 <div className={cn("flex h-full", ratio > 3 ? "flex-row items-center" : ratio >= 1 ? "flex-row" : "flex-col")}>
                   <img src={media} alt="" className={cn("object-cover", ratio > 3 ? "h-full w-1/4" : ratio >= 1 ? "h-full w-1/2" : "h-1/2 w-full")} />
                   <div className={cn("flex flex-1 flex-col justify-center gap-1 p-[6%]", ratio > 3 && "flex-row items-center justify-between")}>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.2em] opacity-60">{brand}</span>
+                    <span className="font-mono text-[9px] uppercase tracking-[0.2em]">{brand}</span>
                     {fmt.headline > 0 && <p className={cn("font-semibold leading-tight", ratio > 3 ? "text-xs" : "text-sm md:text-base")}>{headline}</p>}
                     <span className={cn("mt-1 w-fit rounded-sm px-2 py-0.5 text-[10px] font-semibold", style.id === "signal" ? "bg-ink text-paper" : "bg-signal text-ink")}>Shop now · {product.price}</span>
                   </div>
                 </div>
               )}
               {fmt.media === "Video" && (
-                <span className="absolute left-2 top-2 rounded-sm bg-ink/70 px-1.5 py-0.5 font-mono text-[9px] text-paper">▶ 0:15</span>
+                <span className="absolute left-2 top-2 rounded-sm bg-ink px-1.5 py-0.5 font-mono text-[9px] text-paper">▶ 0:15</span>
               )}
-              <span className="absolute bottom-1.5 right-2 font-mono text-[8px] opacity-60">Sponsored</span>
+              <span className="absolute bottom-1.5 right-2 font-mono text-[8px]">Sponsored</span>
               {safe && <div className="pointer-events-none absolute inset-[6%] rounded-sm border border-dashed border-signal" />}
             </div>
           </div>
@@ -373,7 +373,7 @@ function Studio({ brand }: { brand: string }) {
           ))}
         </ul>
         <div className="mt-4 flex gap-2">
-          <button onClick={() => setShowPayload(!showPayload)} className="flex-1 rounded-md border border-paper/15 py-2.5 text-sm">
+          <button onClick={() => setShowPayload(!showPayload)} className="flex-1 rounded-md border border-signal py-2.5 text-sm">
             {showPayload ? "Hide" : "View"} payload
           </button>
           <button disabled={tooLong} className="flex flex-1 items-center justify-center gap-2 rounded-md bg-signal py-2.5 text-sm font-semibold text-ink disabled:opacity-40">

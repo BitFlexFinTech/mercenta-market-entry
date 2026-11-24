@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 export function ShipmentTracker({ className }: { className?: string | undefined }) {
   return (
     <div className={cn("w-full", className)}>
-      <div className="rounded-2xl border border-paper/[0.08] bg-tracker-surface p-6 shadow-2xl">
+      <div className="rounded-2xl border border-signal bg-tracker-surface p-6 shadow-2xl">
         {/* Header */}
         <div className="mb-6 flex items-center justify-between">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-tracker-muted">
@@ -45,12 +45,12 @@ export function ShipmentTracker({ className }: { className?: string | undefined 
         </div>
 
         {/* Live stages card */}
-        <div className="divide-y divide-paper/[0.06] rounded-xl border border-paper/[0.06] bg-tracker-well">
+        <div className="divide-y divide-signal rounded-xl border border-signal bg-tracker-well">
           <div className="flex items-center justify-between px-4 py-3">
             <span className="font-mono text-xs text-tracker-muted">
               {TRACKER.reference} · {TRACKER.cargo}
             </span>
-            <span className="rounded-full border border-paper/[0.12] bg-paper/[0.06] px-2 py-0.5 font-mono text-[10px] text-tracker-text">
+            <span className="rounded-full border border-signal bg-ink px-2 py-0.5 font-mono text-[10px] text-tracker-text">
               {TRACKER.freight}
             </span>
           </div>

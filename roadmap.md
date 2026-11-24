@@ -9,3 +9,6 @@
 - [x] Concept 3 — Modern UK Market-Entry Platform
 - [x] Concept 4 — Distinctive Editorial Brand
 - [x] Verify all routes, mobile layouts, no restricted channel references
+- [x] Remove background grid squares and hero glow
+- [x] Recolour Shipment Tracker animation to black/white/orange (keep animation)
+- [x] Remove all greys on homepage and Ads Management; more on-brand layout (orange tagline band, brand headings)

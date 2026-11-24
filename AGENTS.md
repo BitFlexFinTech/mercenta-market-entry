@@ -33,6 +33,6 @@ use the editor.
 
 - Each homepage concept lives in `src/concepts/ConceptN.tsx`, with a thin route file `src/routes/concept-N.tsx`; this keeps designs easy to lift into another codebase.
 - All copy shared by the concepts lives in `src/content/mercenta.ts` and photos in `src/content/images.ts`; concepts differ in layout only, never in claims.
-- Brand colours are only the `ink`, `paper` and `signal` tokens in `src/styles.css`; the `live` and `tracker-*` tokens exist solely for the Shipment Tracker.
-- `src/components/mercenta/ShipmentTracker.tsx` mirrors the demo.mercenta.co.uk widget exactly; do not restyle it per concept.
+- Brand colours are only the `ink`, `paper` and `signal` tokens in `src/styles.css`; every other token (`live`, `tracker-*`, shadcn tokens) aliases one of them, and colour classes use no opacity modifiers so no greys appear.
+- `src/components/mercenta/ShipmentTracker.tsx` keeps the demo.mercenta.co.uk layout and motion, coloured only via brand-aliased `tracker-*` tokens; do not restyle it per page.
 - This project is a visual design showcase: buttons and links are presentational, with no backend, forms or app logic.
